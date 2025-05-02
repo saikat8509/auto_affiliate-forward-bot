@@ -26,3 +26,7 @@ Supports:
 ```bash
 git clone https://github.com/saikat8509/auto_affiliate-forward-bot.git
 cd auto_affiliate-forward-bot
+
+
+🙋‍♂️ Need Help?
+DM @saikat8509 or open an issue.
