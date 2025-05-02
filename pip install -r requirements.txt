@@ -1,2 +1,0 @@
-3. Fill in `config.py` with your values
-4. Run the bot:
