@@ -1,16 +1,28 @@
-# Telegram Affiliate Forward Bot
+# 🔄 Auto Affiliate Forward Bot
 
-This bot reads posts from public Telegram channels, converts product links into your affiliate links, and forwards them to your own channel(s).
+This Telegram bot automatically reads product links from **multiple source channels**, converts them into your **affiliate links**, and forwards them with a **custom caption** to **multiple destination channels**.
 
-## Features
+Supports:
+- ✅ Amazon
+- ✅ Flipkart
+- ✅ Meesho
+- ✅ Myntra (via EarnKaro)
 
-- Amazon, Flipkart, Meesho, Myntra link conversion
-- Text cleanup
-- Custom caption
-- Support for multiple source and destination channels
-- Logging for activity and errors
+---
 
-## Setup
+## 🚀 Features
 
-1. Clone this repo
-2. Install requirements:
+- Convert product links to your affiliate links.
+- Remove unwanted keywords or shorteners (like bit.ly).
+- Add a custom caption to every forwarded message.
+- Works with text, photos, and videos.
+- No need to be admin in source channels.
+
+---
+
+## 🔧 Setup Instructions
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/saikat8509/auto_affiliate-forward-bot.git
+cd auto_affiliate-forward-bot
