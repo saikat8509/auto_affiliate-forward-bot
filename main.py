@@ -3,10 +3,10 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from config import API_ID, API_HASH, SESSION_STRING, SOURCE_CHANNELS, DESTINATION_CHANNELS, DEFAULT_CAPTION
-from affiliate_utils import convert_to_cuelinks
+from affiliate_utils import convert_link_to_affiliate
 import re
 
-# Initialize userbot session using session string
+# Initialize userbot session
 app = Client(
     session_name=SESSION_STRING,
     api_id=API_ID,
@@ -29,9 +29,9 @@ async def forward_affiliate_post(client: Client, message: Message):
 
     updated_text = text
     for url in urls:
-        if "myntra.com" in url or "meesho.com" in url:
-            affiliate_url = convert_to_cuelinks(url)
-            updated_text = updated_text.replace(url, affiliate_url)
+        # Convert each URL to your affiliate link
+        affiliate_url = convert_link_to_affiliate(url)
+        updated_text = updated_text.replace(url, affiliate_url)
 
     # Forward the message to all destination channels
     for dest in DESTINATION_CHANNELS:
