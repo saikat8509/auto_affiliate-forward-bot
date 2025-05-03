@@ -1,41 +1,36 @@
-from urllib.parse import quote
-import re
+# affiliate_utils.py
 
-# Replace with your actual affiliate IDs
-amazon_tag = "tag=saikat-21"
-flipkart_tag = "affid=saikatid"
-meesho_tag = "utm_source=saikatmeesho"
-myntra_tag = "abc123"  # EarnKaro kid
+from config import CUELINKS_ID
 
-def convert_amazon_link(link):
-    if "tag=" not in link:
-        return link + ("&" if "?" in link else "?") + amazon_tag
-    return link
+def convert_to_cuelinks(url: str) -> str:
+    """
+    Convert a given product URL (from Myntra, Meesho, Flipkart, Amazon) to a Cuelinks affiliate URL.
+    """
+    return f"https://www.cuelinks.com/out?url={url}&subid={CUELINKS_ID}"
 
-def convert_flipkart_link(link):
-    if "affid=" not in link:
-        return link + ("&" if "?" in link else "?") + flipkart_tag
-    return link
+def convert_to_flipkart_affiliate(url: str) -> str:
+    """
+    Convert a Flipkart product URL to a Flipkart affiliate link.
+    """
+    flipkart_affiliate_id = "your_flipkart_affiliate_id"  # Replace with your actual Flipkart affiliate ID
+    return f"https://www.flipkart.com/affiliate/{flipkart_affiliate_id}/redirect?url={url}"
 
-def convert_meesho_link(link):
-    if "utm_source=" not in link:
-        return link + ("&" if "?" in link else "?") + meesho_tag
-    return link
+def convert_to_amazon_affiliate(url: str) -> str:
+    """
+    Convert an Amazon product URL to an Amazon affiliate link.
+    """
+    amazon_affiliate_id = "your_amazon_affiliate_id"  # Replace with your actual Amazon affiliate ID
+    return f"https://www.amazon.in/dp/{url.split('/')[-1]}?tag={amazon_affiliate_id}"
 
-def convert_myntra_link(link):
-    encoded_url = quote(link, safe='')
-    return f"https://ekaro.in/en?kid={myntra_tag}&murl={encoded_url}"
-
-def convert_affiliate_link(link):
-    if "amazon." in link:
-        return convert_amazon_link(link)
-    elif "flipkart." in link:
-        return convert_flipkart_link(link)
-    elif "meesho." in link:
-        return convert_meesho_link(link)
-    elif "myntra." in link:
-        return convert_myntra_link(link)
-    return link
-
-def extract_links(text):
-    return re.findall(r'https?://\\S+', text)
+def convert_link_to_affiliate(url: str) -> str:
+    """
+    Convert a URL from any supported platform (Amazon, Flipkart, Myntra, Meesho) to your affiliate link.
+    """
+    if "flipkart.com" in url:
+        return convert_to_flipkart_affiliate(url)
+    elif "amazon.in" in url:
+        return convert_to_amazon_affiliate(url)
+    elif "myntra.com" in url or "meesho.com" in url:
+        return convert_to_cuelinks(url)
+    else:
+        return url  # Return the original URL if it's not from a supported platform
