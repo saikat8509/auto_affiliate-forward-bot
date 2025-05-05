@@ -63,6 +63,7 @@ Add .env variables via the Koyeb dashboard.
 
 Set build command to:
 pip install -r requirements.txt
+
 Set run command to:
 python bot.py
 
